@@ -2,17 +2,18 @@
 import iziToast from 'izitoast';
 // Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
-
+let pages = 1;
 const paramsPix = {
   key: '36975970-2726c7257b1c2078714098d3d',
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: 'true',
+  per_page: '33',
 };
 
 export function onGetPhotoByText(query) {
   const API_KEY = '36975970-2726c7257b1c2078714098d3d';
-  const targetUrl = `https://pixabay.com/api/?key=${API_KEY}&q=${query}&image_type=${paramsPix.image_type}&orientation=${paramsPix.orientation}&safesearch=${paramsPix.safesearch}`;
+  const targetUrl = `https://pixabay.com/api/?key=${API_KEY}&q=${query}&image_type=${paramsPix.image_type}&orientation=${paramsPix.orientation}&safesearch=${paramsPix.safesearch}&page=${pages}&per_page=${paramsPix.per_page}`;
   return fetch(targetUrl).then(res => {
     if (!res.ok) {
       throw new Error(res.status);
