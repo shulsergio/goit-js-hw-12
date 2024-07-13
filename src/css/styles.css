@@ -173,3 +173,31 @@
   font-weight: 600;
   line-height: 133%;
 }
+
+.btn-addload{
+  width: 100%;
+display: none;
+margin: 0 auto;
+  border: none;
+  background: #4e75ff;
+  border-radius: 8px;
+    padding: 8px 16px;
+    width: 125px;
+    height: 40px;
+    font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0.04em;
+      color: #fff;
+}
+.text-addload{
+  font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
+  width: 100%;
+    display: none; 
+text-align: center;
+
+}

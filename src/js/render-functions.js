@@ -13,8 +13,10 @@ let userDataLog = new SimpleLightbox('.main-list a', {
 });
 
 export function onCreateGalleryPhoto(data) {
-  newGallery.innerHTML = '';
+  // newGallery.innerHTML = '';
+  console.log('data');
   console.log(data);
+
   newGallery.insertAdjacentHTML('beforeend', onCreateData(data.hits));
   userDataLog.refresh();
 }
