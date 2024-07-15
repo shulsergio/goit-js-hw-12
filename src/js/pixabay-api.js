@@ -8,13 +8,10 @@ const paramsPix = {
   image_type: 'photo',
   orientation: 'horizontal',
   safesearch: 'true',
-  per_page: '3',
+  per_page: '15',
 };
 
 export function onGetPhotoByText(query, pages) {
-  console.log('query- ', query);
-  console.log('pages in pixabay=', pages);
-
   const API_KEY = '36975970-2726c7257b1c2078714098d3d';
   const targetUrl = `https://pixabay.com/api/?key=${API_KEY}&q=${query}&image_type=${paramsPix.image_type}&orientation=${paramsPix.orientation}&safesearch=${paramsPix.safesearch}&page=${pages}&per_page=${paramsPix.per_page}`;
 

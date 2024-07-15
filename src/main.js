@@ -15,6 +15,7 @@ async function onCreateMarckup(evt) {
   if (evt) {
     evt.preventDefault();
     queryData = InputQuery.value.replace(/\s+/g, '+').toLowerCase();
+
     document.querySelector('.main-list').innerHTML = '';
     document.querySelector('.js-text-addload').style.display = 'none';
     pages = 1;
@@ -22,7 +23,6 @@ async function onCreateMarckup(evt) {
   }
   LoaderText.style.display = 'inline-block';
 
-  console.log('queryData- ', queryData);
   onGetPhotoByText(queryData, pages)
     .then(data => {
       LoaderText.style.display = 'none';
@@ -50,10 +50,6 @@ async function onCreateMarckup(evt) {
 }
 
 function onPlusPages() {
-  console.log('pages before =,', pages);
   pages += 1;
-  console.log('pages after +1 =,', pages);
-  console.log('queryData,', queryData);
-
   onCreateMarckup();
 }

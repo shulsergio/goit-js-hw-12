@@ -14,10 +14,20 @@ let userDataLog = new SimpleLightbox('.main-list a', {
 
 export function onCreateGalleryPhoto(data) {
   // newGallery.innerHTML = '';
-  console.log('data');
-  console.log(data);
 
   newGallery.insertAdjacentHTML('beforeend', onCreateData(data.hits));
+
+  // -------плавный скролл
+  const elem = document.querySelector('.gallery-item');
+  const rect = elem.getBoundingClientRect();
+  console.log('rect.key');
+  console.log(rect.height);
+  window.scrollBy({
+    top: rect.height * 2, // 2 высоты карточки
+    // left: 100,
+    behavior: 'smooth',
+  });
+  // -------плавный скролл
   userDataLog.refresh();
 }
 function onCreateData(data) {

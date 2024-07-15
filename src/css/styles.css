@@ -174,10 +174,10 @@
   line-height: 133%;
 }
 
-.js-btn-addload{
+.btn-addload{
   width: 100%;
 display: none;
-margin: 0 auto;
+margin: 10px auto;
   border: none;
   background: #4e75ff;
   border-radius: 8px;
