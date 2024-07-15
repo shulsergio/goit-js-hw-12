@@ -11,7 +11,7 @@ let queryData = '';
 let pages = 1;
 let totalPhotoCreate = 0;
 
-function onCreateMarckup(evt) {
+async function onCreateMarckup(evt) {
   if (evt) {
     evt.preventDefault();
     queryData = InputQuery.value.replace(/\s+/g, '+').toLowerCase();
