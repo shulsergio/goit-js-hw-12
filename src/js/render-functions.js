@@ -12,21 +12,22 @@ let userDataLog = new SimpleLightbox('.main-list a', {
   captionDelay: 250,
 });
 
-export function onCreateGalleryPhoto(data) {
+export function onCreateGalleryPhoto(data, flag) {
   // newGallery.innerHTML = '';
 
   newGallery.insertAdjacentHTML('beforeend', onCreateData(data.hits));
-
   // -------плавный скролл
-  const elem = document.querySelector('.gallery-item');
-  const rect = elem.getBoundingClientRect();
-  console.log('rect.key');
-  console.log(rect.height);
-  window.scrollBy({
-    top: rect.height * 2, // 2 высоты карточки
-    // left: 100,
-    behavior: 'smooth',
-  });
+  if (flag) {
+    const elem = document.querySelector('.gallery-item');
+    const rect = elem.getBoundingClientRect();
+    console.log('rect.key');
+    console.log(rect.height);
+    window.scrollBy({
+      top: rect.height * 2, // 2 высоты карточки
+      // left: 100,
+      behavior: 'smooth',
+    });
+  }
   // -------плавный скролл
   userDataLog.refresh();
 }
