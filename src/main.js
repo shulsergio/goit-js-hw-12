@@ -16,9 +16,6 @@ async function onCreateMarckup(evt) {
   if (evt) {
     evt.preventDefault();
     if (!InputQuery.value.trim()) {
-      console.log('InputQuery.value1');
-
-      console.log(InputQuery.value);
       document.querySelector('.main-list').innerHTML = '';
       document.querySelector('.input-query').innerHTML = '';
       onFetchError();
@@ -33,35 +30,32 @@ async function onCreateMarckup(evt) {
     totalPhotoCreate = 0;
   }
   LoaderText.style.display = 'inline-block';
-  onGetPhotoByText(queryData, pages)
-    .then(data => {
-      LoaderText.style.display = 'none';
+  try {
+    const data = await onGetPhotoByText(queryData, pages);
+    LoaderText.style.display = 'none';
 
-      console.log('totalPhotoCreate-', totalPhotoCreate);
-      console.log('data.hits.length-', data.hits.length);
-      if (data.totalHits === 0) {
-        onFetchError(data);
-        btnAddLoad.style.display = 'none';
-      } else if (totalPhotoCreate + 15 >= data.totalHits) {
-        onCreateGalleryPhoto(data, flag);
-        btnAddLoad.style.display = 'none';
-        document.querySelector('.js-text-addload').style.display = 'block';
-      } else {
-        onCreateGalleryPhoto(data, flag);
-        btnAddLoad.style.display = 'block';
-      }
-      totalPhotoCreate += data.hits.length;
-    })
-    .catch(onFetchError)
-    .finally(() => {
-      InputQuery.value = '';
-    });
+    if (data.totalHits === 0) {
+      onFetchError(data);
+      btnAddLoad.style.display = 'none';
+    } else if (totalPhotoCreate + 15 >= data.totalHits) {
+      onCreateGalleryPhoto(data, flag);
+      btnAddLoad.style.display = 'none';
+      document.querySelector('.js-text-addload').style.display = 'block';
+    } else {
+      onCreateGalleryPhoto(data, flag);
+      btnAddLoad.style.display = 'block';
+    }
+
+    totalPhotoCreate += data.hits.length;
+  } catch (error) {
+    onFetchError();
+  } finally {
+    InputQuery.value = '';
+  }
 }
 
-function onPlusPages() {
+async function onPlusPages() {
   pages += 1;
-  console.log('pages');
-  console.log(pages);
   flag = 1;
-  onCreateMarckup();
+  await onCreateMarckup();
 }
